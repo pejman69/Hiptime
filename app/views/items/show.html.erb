@@ -4,6 +4,8 @@
 
 	<div class="col-md-8 col-md-offset-4">
 		<%= link_to "Back", root_path %>
+		<%= link_to "Edit", edit_item_path(@item) %>
+		<%= link_to "Delete", item_path(@item), method: :delete , data: {Confirm: "Are You Sure?"}%>
 		
 	</div>
 </div>
