@@ -1,15 +1,40 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Hiptime</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>Hiptime</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
 
-  <body>
+<body>
+  <nav class="navbar navbar-default">
+    <div class="container">
+    <div class="navbar-headr">
+      <%= link_to "Hiptime", root_path, class:"navbar-brand"%>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      <% if current_user.present? %>
+       <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %> </li>
+      <% else %>
+      <li><%= link_to "Log in", new_user_session_path %></li>
+      <li><%=link_to "Sign Up", new_user_registration_path %></li>
+      <% end %>
+    </ul>
+    <% if user_signed_in? %>
+    <%= link_to "Create Item", new_item_path, class: "navbar-text navbar-link" %>
+    <% end %>
+    </div>
+  </nav>
+  <div class="col-md-4 col-md-offset-2">
+   <p class="notice"><%= notice %></p>
+   <p class="alert"><%= alert %></p>
+ </div>
+ <div class="container">
     <%= yield %>
-  </body>
+ </div>
+
+</body>
 </html>
